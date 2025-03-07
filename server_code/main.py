@@ -4,6 +4,7 @@ from anvil.tables import app_tables
 import anvil.secrets
 import anvil.server
 from . import fetchData
+from . import dbUtils
 
 @anvil.server.callable
 def fetch_option_data(ticker, strike, option_type, expiration_date):
@@ -30,7 +31,7 @@ def get_all_contract_data():
     Returns:
         list: List of dictionaries containing option data for each record
     """
-    all_whales = app_tables.whales.search()
+    all_whales = dbUtils.get_all_whales()
     results = []
     
     for whale in all_whales:
@@ -55,17 +56,11 @@ def get_all_contract_data():
             print(f"  Theta: {option_data['theta']:.4f} | Vega: {option_data['vega']:.6f}")
             print(f"  IV: {option_data['implied_volatility']:.4f}")
             
-            # Write data to todaysData table
-            app_tables.todaysdata.add_row(
-                tradeID=trade_id,
-                ticker=ticker,
-                strike=strike,
-                side=side,
-                expiration=expiration,
-                volume=option_data['volume'],
-                openInterest=option_data['open_interest']
-            )
-            print(f"  Data saved to todaysData table")
+            # Save data to todaysData table using dbUtils
+            if dbUtils.save_option_data_to_table(trade_id, ticker, strike, side, expiration, option_data):
+                print(f"  Data saved to todaysData table")
+            else:
+                print(f"  Failed to save data to todaysData table")
         else:
             print(f"  ERROR: {option_data.get('error', 'Unknown error')}")
         
