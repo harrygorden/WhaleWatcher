@@ -1,10 +1,28 @@
 allow_embedding: false
 db_schema:
-  contracts:
+  whales:
     client: none
-    columns: []
+    columns:
+    - admin_ui: {order: 0, width: 200}
+      name: tradeID
+      type: string
+    - admin_ui: {order: 1, width: 200}
+      name: ticker
+      type: string
+    - admin_ui: {order: 2, width: 200}
+      name: expiration
+      type: date
+    - admin_ui: {order: 1.5, width: 200}
+      name: strike
+      type: number
+    - admin_ui: {order: 1.75, width: 200}
+      name: side
+      type: string
+    - admin_ui: {order: 3, width: 200}
+      name: whaleContracts
+      type: number
     server: full
-    title: contracts
+    title: whales
 dependencies: []
 name: WhaleWatcher
 package_name: WhaleWatcher
