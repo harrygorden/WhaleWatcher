@@ -47,6 +47,11 @@ def get_all_contract_data():
     
     results = []
     
+    # Print header for clarity
+    print("\n" + "="*60)
+    print("WHALE WATCHER CONTRACT DATA")
+    print("="*60)
+    
     # Process each record
     for whale in all_whales:
         trade_id = whale['tradeID']
@@ -58,8 +63,10 @@ def get_all_contract_data():
         # Convert the side (C/P) to option_type (call/put)
         option_type = "call" if side == "C" else "put"
         
-        # Print the message as requested
+        # Print the message as requested with clear formatting
+        print(f"\n{'+'*60}")
         print(f"Fetching data for trade {trade_id}: {ticker} {strike}{side} {expiration}")
+        print(f"{'+'*60}")
         
         # Fetch the option data
         option_data = fetchData.get_option_data(ticker, strike, option_type, expiration)
@@ -67,7 +74,21 @@ def get_all_contract_data():
         # Add trade ID to the data for reference
         option_data['tradeID'] = trade_id
         
+        # Print key metrics for immediate visibility in console
+        if option_data['success']:
+            print(f"  Volume: {option_data['volume']} | Open Interest: {option_data['open_interest']}")
+            print(f"  Delta: {option_data['delta']:.4f} | Gamma: {option_data['gamma']:.6f}")
+            print(f"  Theta: {option_data['theta']:.4f} | Vega: {option_data['vega']:.6f}")
+            print(f"  IV: {option_data['implied_volatility']:.4f}")
+        else:
+            print(f"  ERROR: {option_data.get('error', 'Unknown error')}")
+        
         # Add to results list
         results.append(option_data)
+    
+    # Print footer
+    print("\n" + "="*60)
+    print(f"COMPLETED: Retrieved data for {len(results)} contracts")
+    print("="*60 + "\n")
     
     return results
