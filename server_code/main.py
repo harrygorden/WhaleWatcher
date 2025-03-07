@@ -5,32 +5,19 @@ import anvil.secrets
 import anvil.server
 from . import fetchData
 
-# This is a server module. It runs on the Anvil server,
-# rather than in the user's browser.
-#
-# To allow anvil.server.call() to call functions here, we mark
-# them with @anvil.server.callable.
-# Here is an example - you can replace it with your own:
-#
-# @anvil.server.callable
-# def say_hello(name):
-#   print("Hello, " + name + "!")
-#   return 42
-#
-
 @anvil.server.callable
 def fetch_option_data(ticker, strike, option_type, expiration_date):
     """
-    Callable function to fetch option data from Polygon API
+    Fetches option data from Polygon API
     
     Args:
-        ticker (str): The ticker symbol (e.g., "SPY")
-        strike (float): The strike price
+        ticker (str): Ticker symbol (e.g., "SPY")
+        strike (float): Strike price
         option_type (str): "call" or "put"
         expiration_date (str): Date in format "YYYY-MM-DD"
         
     Returns:
-        dict: Dict containing option metrics (volume, open interest, etc.) or error information
+        dict: Option metrics (volume, open interest, etc.) or error information
     """
     return fetchData.get_option_data(ticker, strike, option_type, expiration_date)
 
@@ -42,12 +29,9 @@ def get_all_contract_data():
     Returns:
         list: List of dictionaries containing option data for each record
     """
-    # Get all rows from the whales table
     all_whales = app_tables.whales.search()
-    
     results = []
     
-    # Process each record
     for whale in all_whales:
         trade_id = whale['tradeID']
         ticker = whale['ticker']
@@ -55,21 +39,15 @@ def get_all_contract_data():
         side = whale['side']
         expiration = whale['expiration']
         
-        # Convert the side (C/P) to option_type (call/put)
         option_type = "call" if side == "C" else "put"
         
-        # Print the message as requested with clear formatting
         print(f"\n{'+'*60}")
         print(f"Fetching data for trade {trade_id}: {ticker} {strike}{side} {expiration}")
         print(f"{'+'*60}")
         
-        # Fetch the option data
         option_data = fetchData.get_option_data(ticker, strike, option_type, expiration)
-        
-        # Add trade ID to the data for reference
         option_data['tradeID'] = trade_id
         
-        # Print key metrics for immediate visibility in console
         if option_data['success']:
             print(f"  Volume: {option_data['volume']} | Open Interest: {option_data['open_interest']}")
             print(f"  Delta: {option_data['delta']:.4f} | Gamma: {option_data['gamma']:.6f}")
@@ -78,10 +56,7 @@ def get_all_contract_data():
         else:
             print(f"  ERROR: {option_data.get('error', 'Unknown error')}")
         
-        # Add to results list
         results.append(option_data)
     
-    # Print footer
     print(f"\nCompleted: Retrieved data for {len(results)} contracts\n")
-    
     return results
