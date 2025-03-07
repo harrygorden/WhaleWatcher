@@ -1,0 +1,31 @@
+components:
+- components:
+  - components:
+    - components:
+      - layout_properties: {full_width_row: false, grid_position: 'ZFGXEZ,GZXZLO', row_background: ''}
+        name: rich_text_title
+        properties: {align: center, content: Add a Whale, enable_slots: true, font_size: 40, foreground: 'theme:On Secondary Container', spacing_above: none, spacing_below: none}
+        type: RichText
+      layout_properties: {grid_position: 'JXBORF,NQQBCW'}
+      name: outlined_card_2
+      properties: {background: '', role: elevated-card}
+      type: ColumnPanel
+    layout_properties: {full_width_row: true, grid_position: 'OBATRB,OLGYLL'}
+    name: outlined_card_1
+    properties:
+      background: theme:Primary Container
+      col_spacing: medium
+      foreground: theme:On Primary
+      role: elevated-card
+      spacing:
+        margin: [null, 0, null, 0]
+        padding: [null, 15, null, 15]
+    type: ColumnPanel
+  layout_properties: {slot: default}
+  name: content_panel
+  properties: {col_widths: '{}'}
+  type: ColumnPanel
+container:
+  properties: {background: 'theme:Primary', html: '@theme:standard-page.html'}
+  type: HtmlTemplate
+is_package: true

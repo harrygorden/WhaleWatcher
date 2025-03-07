@@ -3,7 +3,9 @@ unique_ids:
     standard-page.html: NC67W3JGCD3RNRTPH7DUCWRLN25LFQA5
     theme.css: KHXICCU4J4LXAHHT55AVOUHLZEFYE7RG
   forms:
-    Form1: Z44NSUA42T76U62R6F2MVQAYNNIVJMU7
+    AddNewWhale: '1741317867112873430259650.7292'
+    WhaleWatcher: Z44NSUA42T76U62R6F2MVQAYNNIVJMU7
+    WhaleWatcher.RowTemplate1: '1741317422897501803926313.13464'
   modules: {}
   scripts: {}
   server_modules: {}
