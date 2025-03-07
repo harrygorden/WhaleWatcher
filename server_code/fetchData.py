@@ -14,15 +14,21 @@ def build_option_symbol(ticker, expiration_date, option_type, strike):
     
     Args:
         ticker (str): The ticker symbol (e.g., "SPY")
-        expiration_date (str): Date in format "YYYY-MM-DD"
+        expiration_date (str or date): Date in format "YYYY-MM-DD" or datetime.date object
         option_type (str): "call" or "put"
         strike (float): The strike price
         
     Returns:
         str: Formatted OCC option symbol
     """
-    # Convert expiration date from YYYY-MM-DD to YYMMDD
-    exp_date = datetime.strptime(expiration_date, "%Y-%m-%d")
+    # Handle both string and datetime.date objects
+    if isinstance(expiration_date, str):
+        exp_date = datetime.strptime(expiration_date, "%Y-%m-%d")
+    else:
+        # Already a date object, no need to parse
+        exp_date = expiration_date
+    
+    # Format as YYMMDD
     exp_formatted = exp_date.strftime("%y%m%d")
     
     # Format the option type (C for call, P for put)
