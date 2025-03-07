@@ -6,22 +6,22 @@ db_schema:
     - admin_ui: {order: 0, width: 200}
       name: tradeID
       type: string
-    - admin_ui: {order: 6.5, width: 200}
+    - admin_ui: {order: 6.5, width: 145}
       name: volume
       type: number
-    - admin_ui: {order: 7.5, width: 200}
+    - admin_ui: {order: 7.5, width: 139}
       name: openInterest
       type: number
-    - admin_ui: {order: 3, width: 200}
+    - admin_ui: {order: 3, width: 129}
       name: ticker
       type: string
-    - admin_ui: {order: 4, width: 200}
+    - admin_ui: {order: 4, width: 127}
       name: strike
       type: number
-    - admin_ui: {order: 5, width: 200}
+    - admin_ui: {order: 5, width: 93}
       name: side
       type: string
-    - admin_ui: {order: 6, width: 200}
+    - admin_ui: {order: 6, width: 150}
       name: expiration
       type: date
     server: full
