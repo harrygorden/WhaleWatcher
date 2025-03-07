@@ -95,7 +95,7 @@ def extract_option_metrics(response_data):
         }
     
     try:
-        # Extract the results from the response - the actual API response is different than initially expected
+        # Extract the results from the response
         results = response_data["data"]["results"]
         
         # Get the day's data
@@ -103,40 +103,38 @@ def extract_option_metrics(response_data):
         volume = day_data.get("volume", 0)
         open_interest = results.get("open_interest", 0)
         
-        # Get details and contract info
+        # Get details
         details = results.get("details", {})
-        contract_type = details.get("contract_type", "")
         strike_price = details.get("strike_price", 0)
+        contract_type = details.get("contract_type", "")
         expiration_date = details.get("expiration_date", "")
-        ticker = details.get("ticker", "")
         
-        # Get greeks if available
+        # Get implied volatility
+        implied_volatility = results.get("implied_volatility", 0)
+        
+        # Get greeks
         greeks = results.get("greeks", {})
         delta = greeks.get("delta", 0)
         gamma = greeks.get("gamma", 0)
         theta = greeks.get("theta", 0)
         vega = greeks.get("vega", 0)
         
-        # Get implied volatility
-        implied_volatility = results.get("implied_volatility", 0)
-        
-        # Get underlying details
-        underlying_asset = results.get("underlying_asset", {})
-        underlying_ticker = underlying_asset.get("ticker", "")
+        # Get underlying ticker
+        underlying_ticker = results.get("underlying_asset", {}).get("ticker", "")
         
         return {
             "success": True,
-            "symbol": ticker,
+            "symbol": details.get("ticker", ""),
             "volume": volume,
             "open_interest": open_interest,
-            "contract_type": contract_type,
             "strike_price": strike_price,
+            "contract_type": contract_type,
             "expiration_date": expiration_date,
+            "implied_volatility": implied_volatility,
             "delta": delta,
             "gamma": gamma,
             "theta": theta,
             "vega": vega,
-            "implied_volatility": implied_volatility,
             "underlying_ticker": underlying_ticker,
             "raw_data": results  # Including raw data for potential future use
         }
