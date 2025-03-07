@@ -56,7 +56,7 @@ def get_all_contract_data():
             print(f"  IV: {option_data['implied_volatility']:.4f}")
             
             # Write data to todaysData table
-            app_tables.todaysData.add_row(
+            app_tables.todaysdata.add_row(
                 tradeID=trade_id,
                 ticker=ticker,
                 strike=strike,
