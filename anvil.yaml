@@ -1,4 +1,10 @@
 allow_embedding: false
+db_schema:
+  contracts:
+    client: none
+    columns: []
+    server: full
+    title: contracts
 dependencies: []
 name: WhaleWatcher
 package_name: WhaleWatcher
@@ -9,6 +15,16 @@ runtime_options:
   server_version: python3-sandbox
   version: 2
 scheduled_tasks: []
+secrets:
+  Polygon_APIKey:
+    type: secret
+    value: {5GQTKXCCF2O37PYW: Nxsk/LTu0Am0Atyji4NKx3paa9iLBYTW8ud/IWdNpuVdbsUwAEou+8ktyMD22gI4qLHPzoGfAh9WlLuEP4Gcot2/7X8x4O1gXnrHD+R3XN4R2LO3u1TOnTwuNfhxoQUw2k1m7UR5cKuqIncQWWla8CF0RXMND+aoYvLugQLy9g==}
+  Pushover_APIKey:
+    type: secret
+    value: {5GQTKXCCF2O37PYW: nW85uLIbMDtkAnJJpkdJfpYqjeUsAX3frQ4/P3qX/5UtJ9Ks3e4qlUgsynW1/EQIOktu/E5Gmg1CXEvZ8nFmu/bsG8prN7jCh79+3xulzKArYywUkRwIH3iq6Ximw1sZAQrf1Y0+YN+zOsRib2Qt26B/Sm91IZK2A2yc2hM=}
+  Pushover_UserKey:
+    type: secret
+    value: {5GQTKXCCF2O37PYW: EV23qPGmpdk2xLSpnsAZSLEk0NSDpfZ69KLR6VuWQenJR2xdLZ9BQwMw4iTMwmqEKC6dLjTAQGfvrYogNx6kaJ1QnSISVFQ5S/6H+PpKPrm6a1fRf/XkkCiWvFQa4/JOttE3Myf1qbETB4Oae7tNS9LX8NmlaGJov7FbFAI=}
 services:
 - client_config: {}
   server_config: {auto_create_missing_columns: true}
