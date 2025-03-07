@@ -1,44 +1,24 @@
 allow_embedding: false
 db_schema:
-  table_2:
-    client: none
-    columns:
-    - admin_ui: {order: 0, width: 200}
-      name: tradeID
-      type: string
-    - admin_ui: {order: 1, width: 200}
-      name: ticker
-      type: string
-    - admin_ui: {order: 2, width: 200}
-      name: expiration
-      type: date
-    - admin_ui: {order: 1.5, width: 200}
-      name: strike
-      type: number
-    - admin_ui: {order: 4, width: 200}
-      name: side
-      type: string
-    server: full
-    title: Table 2
   whales:
     client: none
     columns:
-    - admin_ui: {order: 0, width: 200}
+    - admin_ui: {width: 200}
       name: tradeID
       type: string
-    - admin_ui: {order: 1, width: 200}
+    - admin_ui: {width: 200}
       name: ticker
       type: string
-    - admin_ui: {order: 2, width: 200}
-      name: expiration
-      type: date
-    - admin_ui: {order: 1.5, width: 200}
+    - admin_ui: {width: 200}
       name: strike
       type: number
-    - admin_ui: {order: 1.75, width: 200}
+    - admin_ui: {width: 200}
       name: side
       type: string
-    - admin_ui: {order: 3, width: 200}
+    - admin_ui: {width: 200}
+      name: expiration
+      type: date
+    - admin_ui: {width: 200}
       name: whaleContracts
       type: number
     server: full
