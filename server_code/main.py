@@ -25,6 +25,7 @@ def fetch_option_data(ticker, strike, option_type, expiration_date):
 def get_all_contract_data():
     """
     Fetches option data for all contracts in the whales table
+    and writes the results to the todaysData table
     
     Returns:
         list: List of dictionaries containing option data for each record
@@ -53,6 +54,18 @@ def get_all_contract_data():
             print(f"  Delta: {option_data['delta']:.4f} | Gamma: {option_data['gamma']:.6f}")
             print(f"  Theta: {option_data['theta']:.4f} | Vega: {option_data['vega']:.6f}")
             print(f"  IV: {option_data['implied_volatility']:.4f}")
+            
+            # Write data to todaysData table
+            app_tables.todaysData.add_row(
+                tradeID=trade_id,
+                ticker=ticker,
+                strike=strike,
+                side=side,
+                expiration=expiration,
+                volume=option_data['volume'],
+                openInterest=option_data['open_interest']
+            )
+            print(f"  Data saved to todaysData table")
         else:
             print(f"  ERROR: {option_data.get('error', 'Unknown error')}")
         
