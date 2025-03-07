@@ -47,11 +47,6 @@ def get_all_contract_data():
     
     results = []
     
-    # Print header for clarity
-    print("\n" + "="*60)
-    print("WHALE WATCHER CONTRACT DATA")
-    print("="*60)
-    
     # Process each record
     for whale in all_whales:
         trade_id = whale['tradeID']
@@ -87,8 +82,6 @@ def get_all_contract_data():
         results.append(option_data)
     
     # Print footer
-    print("\n" + "="*60)
-    print(f"COMPLETED: Retrieved data for {len(results)} contracts")
-    print("="*60 + "\n")
+    print(f"\nCompleted: Retrieved data for {len(results)} contracts\n")
     
     return results
